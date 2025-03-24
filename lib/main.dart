@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hello/setting_page.dart';
+
+import 'drawer.dart';
 
 
 void main() {
@@ -16,7 +19,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(),
+      initialRoute: "/",
+      routes: {
+        '/': (context) => const MyHomePage(),
+        '/setting': (context) => const SettingPage()
+      },
     );
   }
 }
@@ -35,6 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: const Text("안녕하세요")
       ),
+      drawer: const MyDrawer(),
       body: Container(
         alignment: Alignment.center,
         child: Column(
