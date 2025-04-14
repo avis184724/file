@@ -9,37 +9,37 @@ class ListPage extends StatefulWidget {
 }
 
 class _ListPageState extends State<ListPage> {
-  // hyundai 리스트 선언
-  List<String> hyundai = [];
+  // builds 리스트 선언
+  List<String> builds = [];
   final TextEditingController _controller = TextEditingController(); // 입력 컨트롤러
   String text = ""; // 텍스트 변수
 
   @override
   void initState() {
     super.initState();
-    _loadhyundai();
+    _loadbuilds();
   }
 
-  void _loadhyundai() async {
+  void _loadbuilds() async {
     final prefs = await SharedPreferences.getInstance();
-    final saveData = prefs.getStringList("hyundai");
+    final saveData = prefs.getStringList("builds");
     if (saveData != null) {
       setState(() {
-        hyundai = saveData;
+        builds = saveData;
       });
     }
   }
 
-  void _savehyundai() async {
+  void _savebuilds() async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setStringList("hyundai", hyundai); // Added missing semicolon
+    await prefs.setStringList("builds", builds); // Added missing semicolon
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Hyundai 리스트"),
+        title: const Text("TETRIS BUILD LIST"),
       ),
       body: Column(
         children: [
@@ -51,15 +51,15 @@ class _ListPageState extends State<ListPage> {
                   child: TextField(
                     controller: _controller,
                     decoration: const InputDecoration(
-                        hintText: "차종입력", border: OutlineInputBorder()),
+                        hintText: "빌드 입력", border: OutlineInputBorder()),
                     onSubmitted: (value) {
                       final text = value.trim();
                       if (text.isNotEmpty) {
                         setState(() {
-                          hyundai.add(text); // Add the new item to the list
+                          builds.add(text); // Add the new item to the list
                           _controller.clear(); // Clear the input field
                         });
-                        _savehyundai(); // Save updated list to shared preferences
+                        _savebuilds(); // Save updated list to shared preferences
                       }
                     },
                   ),
@@ -70,10 +70,10 @@ class _ListPageState extends State<ListPage> {
                     text = _controller.text.trim(); // 텍스트 입력 후 저장
                     if (text.isNotEmpty) {
                       setState(() {
-                        hyundai.add(text); // hyundai 리스트에 아이템 추가
+                        builds.add(text); // builds 리스트에 아이템 추가
                         _controller.clear(); // 입력 필드 초기화
                       });
-                      _savehyundai();
+                      _savebuilds();
                     }
                   },
                   child: const Text("추가"),
@@ -84,15 +84,15 @@ class _ListPageState extends State<ListPage> {
           const Divider(),
           Expanded(
             child: ListView.builder(
-              itemCount: hyundai.length,
+              itemCount: builds.length,
               itemBuilder: (context, index) {
                 return ListTile(
                   leading: const Icon(Icons.edit),
-                  title: Text(hyundai[index]), // hyundai 리스트에서 텍스트 표시
+                  title: Text(builds[index]), // builds 리스트에서 텍스트 표시
                   onTap: () {
                     // 아이템 수정 다이얼로그
                     final TextEditingController _editController =
-                    TextEditingController(text: hyundai[index]);
+                    TextEditingController(text: builds[index]);
 
                     showDialog(
                       context: context,
@@ -114,9 +114,9 @@ class _ListPageState extends State<ListPage> {
                                 final newText = _editController.text.trim();
                                 if (newText.isNotEmpty) {
                                   setState(() {
-                                    hyundai[index] = newText; // 아이템 수정
+                                    builds[index] = newText; // 아이템 수정
                                   });
-                                  _savehyundai();
+                                  _savebuilds();
                                 }
                                 Navigator.pop(context);
                               },
@@ -128,11 +128,11 @@ class _ListPageState extends State<ListPage> {
                     );
                   },
                   onLongPress: () {
-                    final deletedItem = hyundai[index]; // Save the deleted item before removal
+                    final deletedItem = builds[index]; // Save the deleted item before removal
                     setState(() {
-                      hyundai.removeAt(index); // 아이템 삭제
+                      builds.removeAt(index); // 아이템 삭제
                     });
-                    _savehyundai();
+                    _savebuilds();
 
                     ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text('$deletedItem를 삭제했어요!')) // Corrected the SnackBar message

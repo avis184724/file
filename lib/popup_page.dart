@@ -21,19 +21,19 @@ class _PopupPageState extends State<PopupPage> {
                   context: context,
                   builder: (BuildContext con) {
                     return AlertDialog(
-                      title: const Text("Dialog Title"),
-                        content: const Text("Dialog content"),
+                      title: const Text("Hello"),
+                        content: const Text("World!"),
                             actions:[
                               TextButton(
                                 onPressed: () => Navigator.of(context).pop(),
-                                child: const Text("Cloase"),
+                                child: const Text("Close"),
                             )
                       ],
                     );
                   }
               );
             },
-            child: const Text("팝업버튼")),
+            child: const Text("팝업 버튼")),
       ),
     );
   }

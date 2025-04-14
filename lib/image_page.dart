@@ -18,7 +18,7 @@ class _ImagePageState extends State<ImagePage> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Image.network(
-            "https://static-cdn.jtvnw.net/jtv_user_pictures/620a4ac7-8a1c-4991-9a79-9cb8134476fa-profile_image-300x300.png"),
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSB8Ez9apb9evXTHUHCf5T4mIySWE0QcWc6lQ&s"),
       ),
     );
   }
