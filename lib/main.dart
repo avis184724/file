@@ -6,6 +6,7 @@ import 'package:untitled/list_page.dart';
 import 'package:untitled/popup_page.dart';
 import 'package:untitled/setting_page.dart';
 
+import 'ToDoPage.dart';
 import 'button_page.dart';
 import 'image_page.dart' show ImagePage;
 import 'input_page.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
         "/button": (context) => const ButtonPage(),
         "/input": (context) => const InputPage(),
         "/list": (context) => const ListPage(),
+        "/to-do": (context) => const ToDoPage(),
       },
     );
   }
