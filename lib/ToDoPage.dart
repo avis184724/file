@@ -14,7 +14,29 @@ class _ToDoPageState extends State<ToDoPage> {
       appBar: AppBar(
         title: const Text("To Do 앱"),
       ),
-      body: Column(),
+      body: Column(
+        children: [
+          Padding(
+              padding: const EdgeInsets.all(10),
+              child: Row(
+                children: [
+                  Expanded(
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: "할 일을 입력하세요",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10)
+                          ),
+                          filled: true,
+                          fillColor: Colors.grey[100]
+                        ),
+                      ),
+                  ),
+                ],
+              )
+          ),
+        ],
+      ),
     );
   }
 }
