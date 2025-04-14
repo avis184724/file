@@ -32,6 +32,15 @@ class _ToDoPageState extends State<ToDoPage> {
                         ),
                       ),
                   ),
+                  const SizedBox(width: 10),
+                  ElevatedButton(
+                    onPressed: () => (),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.indigo,
+                      foregroundColor: Colors.white
+                    ),
+                    child: const Text("추가")
+                  ),
                 ],
               )
           ),
